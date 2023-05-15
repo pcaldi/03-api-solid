@@ -6,20 +6,16 @@ import { InvalidCredentialsError } from './errors/invalid-credentials-error';
 
 // sut => System Under Test
 
-let usersRepository: InMemoryUsersRepository
-let sut:AuthenticateUseCase
+let usersRepository: InMemoryUsersRepository;
+let sut: AuthenticateUseCase;
 
 describe('Authenticate Use Case', () => {
   beforeEach(() => {
     usersRepository = new InMemoryUsersRepository();
-    sut= new AuthenticateUseCase(usersRepository);
-  })
-
+    sut = new AuthenticateUseCase(usersRepository);
+  });
 
   it('should be able to authenticate', async () => {
-    const usersRepository = new InMemoryUsersRepository();
-    const sut = new AuthenticateUseCase(usersRepository);
-
     await usersRepository.create({
       name: 'John Doe',
       email: 'jdoe@example.com',
@@ -35,9 +31,6 @@ describe('Authenticate Use Case', () => {
   });
 
   it('should not be able to authenticate with wrong email', async () => {
-    const usersRepository = new InMemoryUsersRepository();
-    const sut = new AuthenticateUseCase(usersRepository);
-
     expect(() =>
       sut.execute({
         email: 'jdoe@example.com',
@@ -47,9 +40,6 @@ describe('Authenticate Use Case', () => {
   });
 
   it('should not be able to authenticate with wrong password', async () => {
-    const usersRepository = new InMemoryUsersRepository();
-    const sut = new AuthenticateUseCase(usersRepository);
-
     await usersRepository.create({
       name: 'John Doe',
       email: 'jdoe@example.com',

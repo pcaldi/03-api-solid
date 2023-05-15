@@ -6,14 +6,14 @@ import { UserAlreadyExistsError } from './errors/user-already-exists-error';
 
 // sut => System Under Test
 
-let usersRepository: InMemoryUsersRepository
-let sut:RegisterUseCase
+let usersRepository: InMemoryUsersRepository;
+let sut: RegisterUseCase;
 
 describe('Register Use Case', () => {
   beforeEach(() => {
     usersRepository = new InMemoryUsersRepository();
-    sut= new RegisterUseCase(usersRepository);
-  })
+    sut = new RegisterUseCase(usersRepository);
+  });
 
   it('should be able to register', async () => {
     const { user } = await sut.execute({
